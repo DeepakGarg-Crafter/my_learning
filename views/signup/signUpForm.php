@@ -66,7 +66,7 @@ include "../../styles/signup.css";
       </form>
 
       <div class="have-acc">
-        <p> Already have an Account ? <a href="/registration/views/login/loginForm.php"  style="text-decoration: none; color:blue">  Login Here </a> </p>
+        <p> Already have an Account ? <a href="/my_learning/views/login/loginForm.php"  style="text-decoration: none; color:blue">  Login Here </a> </p>
       </div>
 
       </div>

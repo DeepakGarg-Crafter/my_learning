@@ -10,18 +10,19 @@
            // store cookie name
            $cookieName = "user_token";
 
-           if(!isset($_COOKIE[$cookieName])){
+           if(isset($_COOKIE[$cookieName])){
                  
             // varify token value and provide data
 
             // show profile 
-            include "profile/profilePage.php";
+            header("Location: http://localhost/my_learning/views/profile/profilePage.php");
+             exit;
 
            }
            else{
             // show the login page
-            include "login/loginForm.php";
-
+            header("Location: http://localhost/my_learning/views/login/loginForm.php/");
+            exit;
            }
 
      ?>

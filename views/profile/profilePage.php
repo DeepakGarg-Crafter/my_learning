@@ -9,7 +9,7 @@
        
 <style>
     <?php 
-    include "./styles/profile.css";
+    include "../../styles/profile.css";
     ?>
 </style>
 
@@ -18,6 +18,10 @@
       
   <form  method="post" class="logout-sec">
     <button class="logout-btn" name="logout"> Logout </button>
+  </form>
+
+  <form  method="post" class="acc-delete-sec">
+    <button class="acc-delete-btn" name="account_delete"> Delete Account </button>
   </form>
  
      

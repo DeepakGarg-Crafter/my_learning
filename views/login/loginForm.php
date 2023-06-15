@@ -39,7 +39,7 @@ include "../../styles/login.css";
 
          </form>
 
-         <p class="dont-have-acc"> Don't have an Account? <a href = "/registration/views/signup/signUpForm.php" style="text-decoration: none; color:blue" > SignUp Here</a> </p>
+         <p class="dont-have-acc"> Don't have an Account? <a href = "/my_learning/views/signup/signUpForm.php" style="text-decoration: none; color:blue" > SignUp Here</a> </p>
 </div>
 
 </body>

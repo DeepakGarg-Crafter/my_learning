@@ -74,34 +74,46 @@ if (isset($_POST["registration"])) {
 
     // Now check all the errors : if no error then save data into dp
     if ($fnameErr == "" && $lnameErr == "" && $emailErr == "" && $phoneErr == "" && $passwordErr == "" && $cPasswordErr == "") {
-          
-          // create slat 
-          $options=[
-            'salt' => "43t8q904t42io023j23",
-          ];
-        
-          // hash the password
-          $hashPassword = password_hash($password, PASSWORD_BCRYPT, $options);
-
-           // Now we can add data into Database 
-             
-             $formatData = "INSERT INTO users(firstName,lastName,phone,email,password)
-                            VALUES ($firstName,$lastName,$phone,$email,$hashPassword)"; 
+           
+            // connect to Database
+            include "../../dataBase/dbConnect.php";
+                
+            // check is user already exist or not
+            $searchQuery = "SELECT email FROM users WHERE email='$email'";
             
-            // // connect with database
-            // include "dbConnect.php";
+            $isUserExist = $mysqli->query($searchQuery);
+            
+            // check user
+            if($isUserExist->num_rows!=0){
+                echo " User already Exist";
+                die();
+            }
+           
+            // hash the password
+            $hashedPass = password_hash($password,PASSWORD_BCRYPT);
+
+            // make Data Body to insert
+            $sql = "INSERT INTO users "."(firstName,lastName,phone,email,password) "."
+                            VALUES "."('$firstName','$lastName','$phone','$email','$hashedPass')"; 
+            
              
-            // // check insertion status
-            // if( $connect->query($formatData) == True ){
-            //     echo "Account Created Successfully";
-            // }
-            // else{    
-            //     echo "Unable to Create Account";
-            // }
+             if ($mysqli->query($sql)) {
+                printf("Record inserted successfully.<br />");
+
+                 // Clear the form
+        $set_firstname = $set_lastname = $set_phone = $set_email = $set_password = $set_cPassword = "";
+
+        // redirect to login page
+        header("Location: http://localhost/my_learning/views/login/loginForm.php");
+        exit;
+
+             }
+             if ($mysqli->errno) {
+                printf("Could not insert record into table: %s<br />", $mysqli->error);
+             }
          
 
-        // Clear the form
-        $set_firstname = $set_lastname = $set_phone = $set_email = $set_password = $set_cPassword = "";
+       
 
     }
 
